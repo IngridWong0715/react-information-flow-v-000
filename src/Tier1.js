@@ -14,6 +14,8 @@ export default class Tier1 extends Component {
     }
   }
 
+
+
   handleClick = () => {
     // change state color
     let parentColor = getRandomColor();
@@ -23,7 +25,18 @@ export default class Tier1 extends Component {
       childColor: getReducedColor(parentColor)
       }
     )
+  }
 
+  handleTier2Click = () => {
+    // when a tier 2 is clicked
+    // change both colors
+    let tier2Color = getRandomColor();
+    this.setState(
+      {
+        childColor: tier2Color
+      }
+    )
+    return tier2Color;
   }
 
   render() {
@@ -31,8 +44,8 @@ export default class Tier1 extends Component {
     // present in our solution. What should they be replaced with?
     return (
       <div onClick={this.handleClick} className="tier1" style={{backgroundColor: this.state.color, color: this.state.color}}>
-        <Tier2 color={this.state.childColor} />
-        <Tier2 color={this.state.childColor} />
+        <Tier2 color={this.state.childColor} changeColor={this.handleTier2Click} />
+        <Tier2 color={this.state.childColor} changeColor={this.handleTier2Click}  />
       </div>
     )
   }
